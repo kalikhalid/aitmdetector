@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    container_name: rust_api
+    ports:
+      - "8080:8080"
+    environment:
+      SECURITYTRAILSAPI: PKHG_-TMDsDw-dVzUga7vpC4qJYIrcDY
+
+    networks:
+      - main
+
+  bot: 
+    container_name: rust_bot
+    build:
+      context: . 
+      dockerfile: bot.dockerfile
+    environment:
+      CONFIG_PATH: config.toml
+
+    networks:
+      - main
+
+networks:
+  main:
